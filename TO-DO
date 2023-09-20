@@ -1,0 +1,17 @@
+This still needing to be done
+
+1) Implement coordinate transformations
+2) Implement flow control (forward -> manual, backwards -> automatic)
+3) Repair Qt dialog boxes to work with layout
+4) Implement zoom features
+5) Implement additional mask features (circular masks, top hat and apodization)
+6) Implement progress call back in libanalyzer and libgraphics sections (sig++ methods)
+7) Link Qt progress methods to sig++ methods
+8) Implement PROJ map transformations
+9) Create errorHandler class and make it global
+10) Make association class global
+11) Replace/remove s_association pointer calls with global reference
+12) Replace association error calls with calls to errorHandler
+13) Update analyzer and grapher C interfaces
+14) Create Windows interface
+15) command line interface

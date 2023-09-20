@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>879</width>
+    <height>838</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="mainwindow.qrc">
+    <normaloff>:/icons/analyzer.png</normaloff>:/icons/analyzer.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>7</x>
+      <y>7</y>
+      <width>861</width>
+      <height>681</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="mapTab">
+     <attribute name="title">
+      <string>Map</string>
+     </attribute>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QGraphicsView" name="mapView">
+        <property name="minimumSize">
+         <size>
+          <width>800</width>
+          <height>600</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="powerTab">
+     <attribute name="title">
+      <string>Power Spectrum</string>
+     </attribute>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QGraphicsView" name="powerView"/>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>700</y>
+      <width>861</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="informationLayout">
+     <item>
+      <widget class="QProgressBar" name="progressBar">
+       <property name="value">
+        <number>24</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="progressLabel">
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>518</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>879</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="controlAction"/>
+    <addaction name="openAction"/>
+    <addaction name="saveAction"/>
+    <addaction name="informationAction"/>
+    <addaction name="printAction"/>
+    <addaction name="clearAction"/>
+    <addaction name="separator"/>
+    <addaction name="exitAction"/>
+   </widget>
+   <widget class="QMenu" name="menu_Actions">
+    <property name="title">
+     <string>&amp;Actions</string>
+    </property>
+    <addaction name="pixelizeAction"/>
+    <addaction name="transformAction"/>
+    <addaction name="analyzeAction"/>
+    <addaction name="separator"/>
+    <addaction name="inverseAction"/>
+   </widget>
+   <widget class="QMenu" name="menu_Display">
+    <property name="title">
+     <string>&amp;Display</string>
+    </property>
+    <addaction name="selectMapsAction"/>
+    <addaction name="selectGraphsAction"/>
+    <addaction name="separator"/>
+    <addaction name="zoomInAction"/>
+    <addaction name="zoomOutAction"/>
+    <addaction name="zoomNormalAction"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionChange_Coordinate_System"/>
+   </widget>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="analyzerHandbookAction"/>
+    <addaction name="aboutAnalyzerAction"/>
+   </widget>
+   <widget class="QMenu" name="menu_Configure">
+    <property name="title">
+     <string>&amp;Configure</string>
+    </property>
+    <addaction name="configureMapper"/>
+    <addaction name="configureGrapher"/>
+    <addaction name="configurePixelizer"/>
+    <addaction name="configureTransformer"/>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menu_Actions"/>
+   <addaction name="menu_Display"/>
+   <addaction name="menu_Configure"/>
+   <addaction name="menu_Help"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="fileToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="clearAction"/>
+   <addaction name="controlAction"/>
+   <addaction name="openAction"/>
+   <addaction name="saveAction"/>
+  </widget>
+  <widget class="QToolBar" name="actionToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="pixelizeAction"/>
+   <addaction name="transformAction"/>
+   <addaction name="analyzeAction"/>
+  </widget>
+  <widget class="QToolBar" name="displayToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="selectMapsAction"/>
+   <addaction name="selectGraphsAction"/>
+   <addaction name="zoomInAction"/>
+   <addaction name="zoomOutAction"/>
+   <addaction name="zoomNormalAction"/>
+  </widget>
+  <action name="controlAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/icons/filenew.png</normaloff>:/icons/filenew.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Control</string>
+   </property>
+   <property name="toolTip">
+    <string>Create Control Data Set</string>
+   </property>
+  </action>
+  <action name="openAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/icons/fileopen.png</normaloff>:/icons/fileopen.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+  </action>
+  <action name="saveAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/icons/filesave.png</normaloff>:/icons/filesave.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save</string>
+   </property>
+  </action>
+  <action name="informationAction">
+   <property name="text">
+    <string>&amp;Information</string>
+   </property>
+  </action>
+  <action name="printAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/icons/print.png</normaloff>:/icons/print.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Print</string>
+   </property>
+  </action>
+  <action name="clearAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/icons/eraser.png</normaloff>:/icons/eraser.png</iconset>
+   </property>
+   <property name="text">
+    <string>Clear</string>
+   </property>
+  </action>
+  <action name="exitAction">
+   <property name="text">
+    <string>E&amp;xit</string>
+   </property>
+  </action>
+  <action name="pixelizeAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/icons/healpix.png</normaloff>:/icons/healpix.png</iconset>
+   </property>
+   <property name="text">
+    <string>Pixe&amp;lize</string>
+   </property>
+  </action>
+  <action name="transformAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/icons/rsht.png</normaloff>:/icons/rsht.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Transform</string>
+   </property>
+  </action>
+  <action name="analyzeAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/icons/analyzer.png</normaloff>:/icons/analyzer.png</iconset>
+   </property>
+   <property name="text">
+    <string>Anal&amp;yze</string>
+   </property>
+  </action>
+  <action name="inverseAction">
+   <property name="text">
+    <string>In&amp;verse</string>
+   </property>
+  </action>
+  <action name="selectMapsAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/icons/mollweide.png</normaloff>:/icons/mollweide.png</iconset>
+   </property>
+   <property name="text">
+    <string>Select &amp;Maps</string>
+   </property>
+  </action>
+  <action name="selectGraphsAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/icons/spectrum.png</normaloff>:/icons/spectrum.png</iconset>
+   </property>
+   <property name="text">
+    <string>Select S&amp;pectrum</string>
+   </property>
+  </action>
+  <action name="zoomInAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/icons/zoom+.png</normaloff>:/icons/zoom+.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom In</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="zoomOutAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/icons/zoom-.png</normaloff>:/icons/zoom-.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom Out</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="zoomNormalAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/icons/zoom1.png</normaloff>:/icons/zoom1.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom&amp;1:1</string>
+   </property>
+  </action>
+  <action name="analyzerHandbookAction">
+   <property name="text">
+    <string>Analyzer Handbook</string>
+   </property>
+  </action>
+  <action name="aboutAnalyzerAction">
+   <property name="text">
+    <string>About Analyzer</string>
+   </property>
+  </action>
+  <action name="configureMapper">
+   <property name="text">
+    <string>&amp;Mapper</string>
+   </property>
+  </action>
+  <action name="configurePixelizer">
+   <property name="text">
+    <string>&amp;Pixelizer</string>
+   </property>
+  </action>
+  <action name="configureTransformer">
+   <property name="text">
+    <string>&amp;Transformer</string>
+   </property>
+  </action>
+  <action name="configureGrapher">
+   <property name="text">
+    <string>&amp;Grapher</string>
+   </property>
+  </action>
+  <action name="actionChange_Coordinate_System">
+   <property name="text">
+    <string>Change Coordinate System</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="mainwindow.qrc"/>
+ </resources>
+ <connections/>
+</ui>

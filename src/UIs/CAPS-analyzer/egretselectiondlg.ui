@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>egretSelectionDialog</class>
+ <widget class="QDialog" name="egretSelectionDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>281</width>
+    <height>362</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="sliceBox">
+     <property name="minimumSize">
+      <size>
+       <width>260</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="title">
+      <string>Select Slices</string>
+     </property>
+     <widget class="QRadioButton" name="singleButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>102</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Single slice</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="multiButton">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>30</y>
+        <width>131</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Multiple Slices</string>
+      </property>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="selectionLayout">
+     <item>
+      <layout class="QVBoxLayout" name="minLayout">
+       <item>
+        <widget class="QLabel" name="minLabel">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>15</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Minimum Energy</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListWidget" name="minList">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>175</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="maxLayout">
+       <item>
+        <widget class="QLabel" name="maxLabel">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>15</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Maximum Energy</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListWidget" name="maxList">
+         <property name="minimumSize">
+          <size>
+           <width>125</width>
+           <height>175</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="minimumSize">
+        <size>
+         <width>240</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Help|QDialogButtonBox::Ok</set>
+       </property>
+       <property name="centerButtons">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
