@@ -112,6 +112,36 @@ mainWindow::mainWindow() :
   ui->progressLabel->setText(QString(tr("Ready")));
   s_progressInterface = new progress(this,progressBarWrapper);
 
+  /* set LED indicators */
+  selectedDataType = fileType::Null;
+  selectedDataStream = genericType::NoGeneric;
+  ui->inputDataLED->setState(QLedLabel::missing);
+  ui->inputMaskLED->setState(QLedLabel::missing);
+  ui->inputNoiseLED->setState(QLedLabel::notNecessary);
+  ui->inputFilterLED->setState(QLedLabel::notNecessary);
+  ui->inputBeamLED->setState(QLedLabel::notNecessary);
+  ui->pixelDataLED->setState(QLedLabel::missing);
+  ui->pixelMaskLED->setState(QLedLabel::missing);
+  ui->pixelNoiseLED->setState(QLedLabel::notNecessary);
+  ui->pixelFilterLED->setState(QLedLabel::notNecessary);
+  ui->pixelBeamLED->setState(QLedLabel::notNecessary);
+  ui->transDataLED->setState(QLedLabel::missing);
+  ui->transMaskLED->setState(QLedLabel::missing);
+  ui->transNoiseLED->setState(QLedLabel::notNecessary);
+  ui->transFilterLED->setState(QLedLabel::notNecessary);
+  ui->transBeamLED->setState(QLedLabel::notNecessary);
+  ui->almDataLED->setState(QLedLabel::missing);
+  ui->almMaskLED->setState(QLedLabel::missing);
+  ui->almNoiseLED->setState(QLedLabel::notNecessary);
+  ui->almFilterLED->setState(QLedLabel::notNecessary);
+  ui->almBeamLED->setState(QLedLabel::notNecessary);
+  ui->inverseDataLED->setState(QLedLabel::missing);
+  ui->inverseMaskLED->setState(QLedLabel::missing);
+  ui->inverseNoiseLED->setState(QLedLabel::notNecessary);
+  ui->inverseFilterLED->setState(QLedLabel::notNecessary);
+  ui->inverseBeamLED->setState(QLedLabel::notNecessary);
+
+
   /* set up Qt signal/slot connections */
   connect(ui->controlAction, &QAction::triggered, [=](bool open){ctrlDlg->configure(false);});
   connect(ui->openAction, &QAction::triggered, [=](){openFile();});
@@ -275,6 +305,45 @@ void mainWindow::openFile()
     if (selectedDataType >= fileType::TRANSFORM_LIMIT)
       selectedDataType = (FILETYPE)((int)selectedDataType + 1); // add one to account for end of transformable types
 
+    // set data stream based on data type
+    switch (selectedDataType) {
+      case fileType::InputData:
+      case fileType::PixelizedData:
+      case fileType::InverseData:
+      case fileType::TransformedData:
+      case fileType::AlmData:
+        selectedDataStream = genericType::Data;
+        break;
+      case fileType::InputWeights:
+      case fileType::PixelizedWeights:
+      case fileType::InverseWeights:
+      case fileType::TransformedWeights:
+      case fileType::AlmWeights:
+        selectedDataStream = genericType::Weights;
+        break;
+      case fileType::InputNoise:
+      case fileType::PixelizedNoise:
+      case fileType::InverseNoise:
+      case fileType::TransformedNoise:
+      case fileType::AlmNoise:
+        selectedDataStream = genericType::Noise;
+        break;
+      case fileType::InputFilter:
+      case fileType::PixelizedFilter:
+      case fileType::InverseFilter:
+      case fileType::TransformedFilter:
+      case fileType::AlmFilter:
+        selectedDataStream = genericType::Filter;
+        break;
+      case fileType::InputBeam:
+      case fileType::PixelizedBeam:
+      case fileType::InverseBeam:
+      case fileType::TransformedBeam:
+      case fileType::AlmBeam:
+        selectedDataStream = genericType::Beam;
+        break;
+    }
+
     // check file type
     fileName = selectedFileNames[0];
     double minEnergy = 0.0, maxEnergy = 0.0;
@@ -283,6 +352,8 @@ void mainWindow::openFile()
       dataFormat = Fits;
     if (fileName.contains(".csv",Qt::CaseInsensitive))
       dataFormat = CSV;
+    if (fileName.contains(".hdf5",Qt::CaseInsensitive) || (fileName.contains(".h5",Qt::CaseInsensitive)))
+      dataFormat = HDF5;
 
     // get data from file
     if (s_association->exists(dataEngines::fileIO))
@@ -320,6 +391,97 @@ void mainWindow::openFile()
     }
     else
       readData();
+
+    // check if upstream data exists and flag it if it does
+    switch (selectedDataStream) {
+      case genericType::Data:
+        switch (selectedDataType) {
+          case fileType::AlmData:
+            if (s_association->exists(fileType::TransformedData))
+              ui->transDataLED->setState(QLedLabel::outOfDate);
+          case fileType::TransformedData:
+            if (s_association->exists(fileType::InverseData))
+              ui->inverseDataLED->setState(QLedLabel::outOfDate);
+          case fileType::InverseData:
+            if (s_association->exists(fileType::PixelizedData))
+              ui->pixelDataLED->setState(QLedLabel::outOfDate);
+          case fileType::PixelizedData:
+            if (s_association->exists(fileType::InputData))
+              ui->inputDataLED->setState(QLedLabel::outOfDate);
+            break;
+        }
+        break;
+      case genericType::Weights:
+        switch (selectedDataType) {
+          case fileType::AlmWeights:
+            if (s_association->exists(fileType::TransformedWeights))
+              ui->transMaskLED->setState(QLedLabel::outOfDate);
+          case fileType::TransformedWeights:
+            if (s_association->exists(fileType::InverseWeights))
+              ui->inverseMaskLED->setState(QLedLabel::outOfDate);
+          case fileType::InverseWeights:
+            if (s_association->exists(fileType::PixelizedWeights))
+              ui->pixelMaskLED->setState(QLedLabel::outOfDate);
+          case fileType::PixelizedWeights:
+            if (s_association->exists(fileType::InputWeights))
+              ui->inputMaskLED->setState(QLedLabel::outOfDate);
+            break;
+        }
+        break;
+      case genericType::Noise:
+        switch (selectedDataType) {
+          case fileType::AlmNoise:
+            if (s_association->exists(fileType::TransformedNoise))
+              ui->transNoiseLED->setState(QLedLabel::outOfDate);
+          case fileType::TransformedNoise:
+            if (s_association->exists(fileType::InverseNoise))
+              ui->inverseNoiseLED->setState(QLedLabel::outOfDate);
+          case fileType::InverseNoise:
+            if (s_association->exists(fileType::PixelizedNoise))
+              ui->pixelNoiseLED->setState(QLedLabel::outOfDate);
+          case fileType::PixelizedNoise:
+            if (s_association->exists(fileType::InputNoise))
+              ui->inputNoiseLED->setState(QLedLabel::outOfDate);
+            break;
+        }
+        break;
+      case genericType::Filter:
+        switch (selectedDataType) {
+          case fileType::AlmFilter:
+            if (s_association->exists(fileType::TransformedFilter))
+              ui->transFilterLED->setState(QLedLabel::outOfDate);
+          case fileType::TransformedFilter:
+            if (s_association->exists(fileType::InverseFilter))
+              ui->inverseFilterLED->setState(QLedLabel::outOfDate);
+          case fileType::InverseFilter:
+            if (s_association->exists(fileType::PixelizedFilter))
+              ui->pixelFilterLED->setState(QLedLabel::outOfDate);
+          case fileType::PixelizedFilter:
+            if (s_association->exists(fileType::InputFilter))
+              ui->inputFilterLED->setState(QLedLabel::outOfDate);
+            break;
+        }
+        break;
+      case genericType::Beam:
+        switch (selectedDataType) {
+          case fileType::AlmBeam:
+            if (s_association->exists(fileType::TransformedBeam))
+              ui->transBeamLED->setState(QLedLabel::outOfDate);
+          case fileType::TransformedBeam:
+            if (s_association->exists(fileType::InverseBeam))
+              ui->inverseBeamLED->setState(QLedLabel::outOfDate);
+          case fileType::InverseBeam:
+            if (s_association->exists(fileType::PixelizedBeam))
+              ui->pixelBeamLED->setState(QLedLabel::outOfDate);
+          case fileType::PixelizedBeam:
+            if (s_association->exists(fileType::InputBeam))
+              ui->inputBeamLED->setState(QLedLabel::outOfDate);
+            break;
+        }
+        break;
+      default:
+        break;
+    }
   }
 }
 
@@ -510,8 +672,8 @@ void mainWindow::createControlData(FILETYPE dataType, bool complete)
 {
   QString title, message;
 
-  // check to see if a data chain already exists and is complete
-  if (s_association->exists(dataType) && s_association->getData(dataType)->finalized()) {
+  // check to see if a data chain already exists and is current
+  if (s_association->exists(dataType) && s_association->getData(dataType)->current()) {
     title = QString(tr("Replace current data chain?"));
     message = QString(tr("A data chain currently exists.\nDo you want to replace it?"));
     QMessageBox::StandardButton reply = QMessageBox::question(this,title,message,QMessageBox::Yes | QMessageBox::No,QMessageBox::No);
@@ -764,7 +926,7 @@ void mainWindow::createControlData(FILETYPE dataType, bool complete)
 
   if (complete) {
     s_association->getData(dataType)->dataType(dataType);
-    s_association->getData(dataType)->finalized(true);
+    s_association->getData(dataType)->current(true);
   }
   else
     ctrlDlg->configure(true);

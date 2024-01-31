@@ -34,7 +34,9 @@ set(CAPS-analyzer_SRCS
     healpixdlg.cpp
     transformerdlg.cpp
     rshtdlg.cpp
-    spectrumdlg.cpp)
+    spectrumdlg.cpp
+    qledlabel.cpp)
+
 set(CAPS-analyzer_MOC_HDRS
     mainwindow.h
     controldatadlg.h
@@ -47,7 +49,9 @@ set(CAPS-analyzer_MOC_HDRS
     healpixdlg.h
     transformerdlg.h
     rshtdlg.h
-    spectrumdlg.h)
+    spectrumdlg.h
+    qledlabel.h)
+
 set(CAPS-analyzer_UIS
     mainwindow.ui
     controldatadlg.ui
@@ -61,6 +65,7 @@ set(CAPS-analyzer_UIS
     transformerdlg.ui
     rshtdlg.ui
     spectrumdlg.ui)
+
 set(CAPS-analyzer_RCS
     mainwindow.qrc)
      
@@ -68,7 +73,7 @@ qt_add_resources(CAPS-analyzer_RC_SRCS ${CAPS-analyzer_RCS})
 qt_wrap_ui(CAPS-analyzer_UI_HDRS ${CAPS-analyzer_UIS})
 qt_wrap_cpp(CAPS-analyzer_MOC_SRCS ${CAPS-analyzer_MOC_HDRS})
 
-include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_SOURCE_DIR}/.. ${DEPS_INCLUDE_DIRS})
+include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_SOURCE_DIR}/.. ${CMAKE_SOURCE_DIR} ${DEPS_INCLUDE_DIRS})
 link_directories(${CMAKE_CURRENT_BINARY_DIR}/../../libanalyzer/ ${CMAKE_CURRENT_BINARY_DIR}/../../libgraphics/)
 
 add_executable(CAPS-analyzer ${CAPS-analyzer_SRCS} ${CAPS-analyzer_MOC_SRCS} ${CAPS-analyzer_UI_HDRS} ${CAPS-analyzer_RC_SRCS})

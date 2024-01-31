@@ -192,10 +192,10 @@ class baseData {
      void initialized(bool value) {m_initialized = value;}
    
     /**
-     * check if data has been finalized
+     * check if data is current
      */
-     bool finalized() const {return m_finalized;}
-     void finalized(bool value) {m_finalized = value;}
+     bool current() const {return m_current;}
+     void current(bool value) {m_current = value;}
 
    /**
     * set up progress bar callback
@@ -238,7 +238,7 @@ class baseData {
     std::string                 m_fileName;
     int                         m_nDimensions;
     bool                        m_initialized;
-    bool                        m_finalized;
+    bool                        m_current;
 
     int                         m_numFileTypes;
     int                         m_numObservatories;

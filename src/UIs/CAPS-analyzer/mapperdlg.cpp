@@ -122,7 +122,7 @@ void mapperDialog::configure() {
 
     if (projection == Mollweide)
       ui->mollweideButton->setChecked(true);
-    if (projection == Atoff)
+    if (projection == Aitoff)
       ui->atoffButton->setChecked(true);
     if (projection == Gnomonic)
       ui->gnomicButton->setChecked(true);

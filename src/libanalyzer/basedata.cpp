@@ -74,7 +74,7 @@ baseData::baseData() {
   m_bitpix       = fitsUndef;
   m_fileName     = "";
   m_initialized  = false;
-  m_finalized    = false;
+  m_current      = false;
 //  m_showProgress = false;
 //  m_uiObject     = 0;
 //  m_updateFunc   = 0;
@@ -100,7 +100,7 @@ baseData::baseData(baseData* from) {
   m_bitpix       = from->bitpix();
   m_fileName     = from->fileName();
   m_initialized  = from->initialized();
-  m_finalized    = from->finalized();
+  m_current      = from->current();
 //  m_showProgress = from->showProgress();
 //  m_uiObject     = from->userInterface();
 //  m_updateFunc   = from->updateFunction();
@@ -126,7 +126,7 @@ baseData& baseData::operator=(baseData& other) {
   m_bitpix       = other.bitpix();
   m_fileName     = other.fileName();
   m_initialized  = other.initialized();
-  m_finalized    = other.finalized();
+  m_current      = other.current();
 //  m_showProgress = other.showProgress();
 //  m_uiObject     = other.userInterface();
 //  m_updateFunc   = other.updateFunction();

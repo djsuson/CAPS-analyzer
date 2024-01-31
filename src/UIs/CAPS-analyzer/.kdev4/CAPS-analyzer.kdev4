@@ -1,0 +1,41 @@
+[Buildset]
+BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00\x1a\x00C\x00A\x00P\x00S\x00-\x00a\x00n\x00a\x00l\x00y\x00z\x00e\x00r)
+
+[CMake]
+Build Directory Count=1
+Current Build Directory Index-Host System=0
+
+[CMake][CMake Build Directory 0]
+Build Directory Path=/mnt/research/software/CAPS-analyzer/build/src/UIs/CAPS-analyzer
+Build Type=Debug
+CMake Binary=/usr/bin/cmake
+CMake Executable=/usr/bin/cmake
+Environment Profile=
+Extra Arguments=
+Install Directory=/usr/local
+Runtime=Host System
+
+[Launch]
+Launch Configurations=Launch Configuration 0
+
+[Launch][Launch Configuration 0]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=CAPS-analyzer
+Type=Native Application
+
+[Launch][Launch Configuration 0][Data]
+Arguments=
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x02\x00\x00\x00\x1a\x00C\x00A\x00P\x00S\x00-\x00a\x00n\x00a\x00l\x00y\x00z\x00e\x00r\x00\x00\x00\x1a\x00C\x00A\x00P\x00S\x00-\x00a\x00n\x00a\x00l\x00y\x00z\x00e\x00r)
+Dependency Action=Build
+EnvironmentGroup=
+Executable=file:///mnt/research/software/CAPS-analyzer/src/UIs/CAPS-analyzer
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+Kill Before Executing Again=4194304
+Project Target=CAPS-analyzer,CAPS-analyzer
+Use External Terminal=false
+Working Directory=
+isExecutable=false
+
+[Project]
+VersionControlSupport=kdevgit
