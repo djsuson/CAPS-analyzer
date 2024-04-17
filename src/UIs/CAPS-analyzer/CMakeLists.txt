@@ -1,6 +1,5 @@
-project(CAPS-analyzer)
-
 cmake_minimum_required(VERSION 3.10)
+project(CAPS-analyzer)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)

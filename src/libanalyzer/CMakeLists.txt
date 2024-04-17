@@ -1,8 +1,12 @@
-project(libanalyzer)
 cmake_minimum_required(VERSION 3.10)
+project(libanalyzer)
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/../../cmake/Modules/")
 
 include(FindPkgConfig)
 pkg_check_modules(DEPS REQUIRED sigc++-2.0)
+
+find_package(CCfits REQUIRED)
 
 set(analyzer_SOURCES
     analyzer.cpp
